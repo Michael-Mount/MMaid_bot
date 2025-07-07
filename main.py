@@ -4,10 +4,14 @@ import logging
 from dotenv import load_dotenv
 import os
 import asyncio
+from keep_alive import keep_alive
 
 ## Loads the current enviroment file content
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
+
+##Pings server every 8 mins to keep server active
+keep_alive()
 
 if not token:
     raise ValueError("DISCORD_TOKEN isn't being passed form .env or is empty")
