@@ -22,6 +22,7 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 ## The list of intents the Discord bot has from Discord App
 intents = discord.Intents.default()
 
+##ahhhhhhhhhhh
 intents.message_content = True
 intents.members = True
 
