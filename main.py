@@ -3,7 +3,7 @@ from discord.ext import commands
 import logging
 from dotenv import load_dotenv
 import os
-import random
+import asyncio
 
 ## Loads the current enviroment file content
 load_dotenv()
@@ -29,5 +29,14 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f"Howdy, {bot.user.name} is live!")
 
-## Start Command
-bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+## Loads Modulized Command/Functions in cog file
+async def main():
+    async with bot:
+        cog_dir = os.path.join(os.path.dirname(__file__), "cogs")
+        for filename in os.listdir(cog_dir):
+            if filename.endswith(".py"):
+                await bot.load_extension(f"cogs.{filename[:-3]}")
+        await bot.start(token)
+
+## Start The Bot
+asyncio.run(main())
