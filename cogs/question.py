@@ -8,6 +8,7 @@ class Question(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    @commands.cooldown(1, 10, commands.BucketType.user)
     async def question(self, ctx):
         UNO = discord.utils.get(ctx.guild.emojis, name='mmountUNO')
         random_number = random.randint(1, 10)
