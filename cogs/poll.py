@@ -9,8 +9,8 @@ class Poll(commands.Cog):
 
 @commands.command()
 @commands.cooldown(1, 10, commands.BucketType.user)
-async def poll(ctx, *, question):
-    embed = discord.Embed(title="New Poll", description=question)
+async def poll(self, ctx, *, question):
+    embed = discord.Embed(title="New Poll", description=question, color=discord.Color.dark_green())
     poll_message = await ctx.send(embed=embed)
     await poll_message.add_reaction("👍")
     await poll_message.add_reaction("👎")
